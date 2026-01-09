@@ -5,8 +5,12 @@ from tkinter import filedialog
 from tkinter.filedialog import asksaveasfilename
 
 def do_command():
-    subprocess.call("ping localhost")
-
+    command = ["ping", "localhost"]
+    # Windows version to limit to 4 requests: command = ["ping", "localhost", "-n", "4"]
+    # Mac version to limit to 4 requests:     command = ["ping", "localhost", "-n", "4"]
+    
+    subprocess.run(command)
+    
 root = tk.Tk()
 frame = tk.Frame(root)
 frame.pack()

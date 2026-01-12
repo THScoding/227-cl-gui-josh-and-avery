@@ -1,3 +1,6 @@
+# p227_starter_one_button_shell.py
+# Note this will not run in the code editor and must be downloaded
+
 import subprocess
 import tkinter as tk
 import tkinter.scrolledtext as tksc
@@ -5,18 +8,21 @@ from tkinter import filedialog
 from tkinter.filedialog import asksaveasfilename
 
 def do_command():
-    command = ["ping", "localhost"]
-    # Windows version to limit to 4 requests: command = ["ping", "localhost", "-n", "4"]
-    # Mac version to limit to 4 requests:     command = ["ping", "localhost", "-n", "4"]
-    
-    subprocess.run(command)
-    
+    subprocess.call("ping localhost")
+
 root = tk.Tk()
 frame = tk.Frame(root)
+frame.configure(width =300, height=200)
 frame.pack()
 
 # set up button to run the do_command function
 ping_btn = tk.Button(frame, text="ping", command=do_command)
 ping_btn.pack()
 
+ping = tk.Button(frame, text="ipconfig", command = lambda: subprocess.call("ipconfig"))
+ping.pack()
+
+listbox = tk.Listbox(frame)
+listbox.insert(1, ping)
+listbox.pack()
 root.mainloop()

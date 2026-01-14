@@ -7,17 +7,29 @@ import tkinter.scrolledtext as tksc
 from tkinter import filedialog
 from tkinter.filedialog import asksaveasfilename
 
-def do_command():
+def do_command_ping():
     subprocess.call("ping localhost")
 
+def do_command_entry():
+    subprocess.call("entry")
+    
 root = tk.Tk()
 frame = tk.Frame(root)
 frame.pack()
 
+URL = tk.Entry(frame, text = "Enter URL here", command =do_command_entry)
+URL.pack()
 # set up button to run the do_command function
-ping_btn = tk.Button(frame, text="ping", command=do_command)
+ping_btn = tk.Button(frame, text="ping", command=do_command_ping)
 ping_btn.pack()
 
+ipconfig_btn = tk.Button(frame, text="ipconfig", command = lambda: subprocess.call("ipconfig"))
+ipconfig_btn.pack()
+
+listbox = tk.Listbox(frame)
+listbox.insert(1, "ping")
+listbox.insert(2, "ipconfig")
+listbox.pack()
 root.mainloop()
 
 # creates the frame with label for the text box

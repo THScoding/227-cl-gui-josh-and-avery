@@ -16,11 +16,6 @@ root = tk.Tk()
 frame = tk.Frame(root)
 frame.pack()
 
-# set up button to run the do_command function
-ping_btn = tk.Button(frame, text="ping", command=do_command)
-ping_btn.pack()
-
-
 # creates the frame with label for the text box
 frame_URL = tk.Frame(root, pady=10,  bg="black") # change frame color
 frame_URL.pack()
@@ -61,7 +56,10 @@ def do_command(command):
     url_val = url_entry.get()
     if (len(url_val) == 0):
      # url_val = "127.0.0.1"
-     url_val = "::1"
+        url_val = "::1"
+    if command == "ipconfig":
+        url_val = " "
+     
     with subprocess.Popen(command + ' ' + url_val, stdout=subprocess.PIPE, bufsize=1, universal_newlines=True) as p:
         for line in p.stdout:
             command_textbox.insert(tk.END,line)
@@ -94,8 +92,9 @@ items = ["Ping", "IPconfig", "Netstat"]
 for item in items:
     listbox.insert(tk.END, item)
 
+netstat_btn = tk.Button(frame, text = "See the path of data transmission", command= lambda:do_command("netstat"))
+netstat_btn.pack()
 listbox.pack()
  
-print(listbox.get())
    
 root.mainloop()

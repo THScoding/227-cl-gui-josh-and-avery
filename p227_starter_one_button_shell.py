@@ -44,11 +44,20 @@ command_textbox.pack()
 ping_btn = tk.Button(frame, text="Check to see if a URL is up and active", command=lambda:do_command("ping"))
 ping_btn.pack()
 
+tracert_btn = tk.Button(frame, text="Map your data packet's route", command=lambda:do_command("tracert"))
+tracert_btn.pack()
+
+nslookup_btn = tk.Button(frame, text = "Name server look up", command=lambda:do_command("nslookup"))
+nslookup_btn.pack()
+
 ipconfig_btn = tk.Button(frame, text = "Check to see IP address", command=lambda:do_command("ipconfig"))
 ipconfig_btn.pack()
 
 netstat_btn = tk.Button(frame, text = "See the path of data transmission", command= lambda:do_command("netstat"))
 netstat_btn.pack()
+
+nmap_btn = tk.Button(frame, text="nmap", command=lambda:do_command("nmap"))
+nmap_btn.pack()
 
 def do_command(command):
     global command_textbox

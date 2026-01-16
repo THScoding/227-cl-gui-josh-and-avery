@@ -66,11 +66,10 @@ def do_command(command):
     url_val = url_entry.get()
     if (len(url_val) == 0):
      # url_val = "127.0.0.1"    
-        if command == "ping" or "tracert":
-            url_val = "::1"
-        elif command == "ipconfig" or "netstat" or "nmap" or "nslookup":
-            url_val = " "
-   
+        url_val = "::1"
+    if command == "ipconfig" or command == "netstat" or command == "nmap":
+        url_val = " "
+
     with subprocess.Popen(command + ' ' + url_val, stdout=subprocess.PIPE, bufsize=1, universal_newlines=True) as p:
         for line in p.stdout:
             command_textbox.insert(tk.END,line)

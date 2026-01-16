@@ -46,6 +46,10 @@ ping_btn.pack()
 
 ipconfig_btn = tk.Button(frame, text = "Check to see IP address", command=lambda:do_command("ipconfig"))
 ipconfig_btn.pack()
+
+netstat_btn = tk.Button(frame, text = "See the path of data transmission", command= lambda:do_command("netstat"))
+netstat_btn.pack()
+
 def do_command(command):
     global command_textbox
     
@@ -57,7 +61,7 @@ def do_command(command):
     if (len(url_val) == 0):
      # url_val = "127.0.0.1"
         url_val = "::1"
-    if command == "ipconfig":
+    if command == "ipconfig" or "netstat":
         url_val = " "
      
     with subprocess.Popen(command + ' ' + url_val, stdout=subprocess.PIPE, bufsize=1, universal_newlines=True) as p:
@@ -92,8 +96,6 @@ items = ["Ping", "IPconfig", "Netstat"]
 for item in items:
     listbox.insert(tk.END, item)
 
-netstat_btn = tk.Button(frame, text = "See the path of data transmission", command= lambda:do_command("netstat"))
-netstat_btn.pack()
 listbox.pack()
  
    

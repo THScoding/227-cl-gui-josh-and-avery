@@ -9,9 +9,6 @@ import tkinter.scrolledtext as tksc
 from tkinter import filedialog
 from tkinter.filedialog import asksaveasfilename
 
-def do_command():
-    subprocess.call("ping localhost")
-
 root = tk.Tk()
 frame = tk.Frame(root)
 frame.pack()
@@ -56,7 +53,7 @@ ipconfig_btn.pack()
 netstat_btn = tk.Button(frame, text = "See the path of data transmission", command= lambda:do_command("netstat"))
 netstat_btn.pack()
 
-nmap_btn = tk.Button(frame, text="nmap", command=lambda:do_command("nmap"))
+nmap_btn = tk.Button(frame, text="Find open ports and services", command=lambda:do_command("nmap"))
 nmap_btn.pack()
 
 def do_command(command):
@@ -68,11 +65,12 @@ def do_command(command):
     # If url_entry is blank, use localhost IP address 
     url_val = url_entry.get()
     if (len(url_val) == 0):
-     # url_val = "127.0.0.1"
-        url_val = "::1"
-    if command == "ipconfig" or "netstat":
-        url_val = " "
-     
+     # url_val = "127.0.0.1"    
+        if command == "ping" or "tracert":
+            url_val = "::1"
+        elif command == "ipconfig" or "netstat" or "nmap" or "nslookup":
+            url_val = " "
+   
     with subprocess.Popen(command + ' ' + url_val, stdout=subprocess.PIPE, bufsize=1, universal_newlines=True) as p:
         for line in p.stdout:
             command_textbox.insert(tk.END,line)
@@ -101,7 +99,7 @@ ping_btn = tk.Button(frame, text="Check to see if a URL is up and active",
 ping_btn.pack() 
 
 listbox = tk.Listbox(frame, height = 5, width = 50)
-items = ["Ping", "IPconfig", "Netstat"]
+items = ["Ping", "Tracert","Nslookup","IPconfig", "Netstat","Nmap"]
 for item in items:
     listbox.insert(tk.END, item)
 

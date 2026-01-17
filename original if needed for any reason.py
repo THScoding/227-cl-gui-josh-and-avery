@@ -39,52 +39,70 @@ command_textbox.pack()
 
 # Makes the command button pass it's name to a function using lambda
 
+  # Modifies the ping button parameters.
+ping_btn = tk.Button(frame, text="Check to see if a URL is up and active", command=lambda:do_command("ping"),
+    compound="center",
+    font=("comic sans", 12),
+    bd=0, 
+    relief="flat",
+    cursor="heart",
+    fg = "mediumpurple3",
+    bg="black", activebackground="gray")
+ping_btn.pack() 
 
-'''
-ping_btn = tk.Button(frame, text="Check to see if a URL is up and active", command=lambda:do_command("ping"))
-ping_btn.pack()
-
-tracert_btn = tk.Button(frame, text="Map your data packet's route", command=lambda:do_command("tracert"))
+tracert_btn = tk.Button(frame, text="Map your data packet's route", command=lambda:do_command("tracert"),
+    compound="center",
+    font=("comic sans", 12),
+    bd=0, 
+    relief="flat",
+    cursor="heart",
+    fg = "mediumpurple3",
+    bg="black", activebackground="gray")
 tracert_btn.pack()
 
-nslookup_btn = tk.Button(frame, text = "Name server look up", command=lambda:do_command("nslookup"))
+nslookup_btn = tk.Button(frame, text = "Name server look up", command=lambda:do_command("nslookup"),
+    compound="center",
+    font=("comic sans", 12),
+    bd=0, 
+    relief="flat",
+    cursor="heart",
+    fg = "mediumpurple3",
+    bg="black", activebackground="gray")
 nslookup_btn.pack()
 
-ipconfig_btn = tk.Button(frame, text = "Check to see IP address", command=lambda:do_command("ipconfig"))
+ipconfig_btn = tk.Button(frame, text = "Check to see IP address", command=lambda:do_command("ipconfig"),
+    compound="center",
+    font=("comic sans", 12),
+    bd=0, 
+    relief="flat",
+    cursor="heart",
+    fg = "mediumpurple3",
+    bg="black", activebackground="gray")
 ipconfig_btn.pack()
 
-netstat_btn = tk.Button(frame, text = "See the path of data transmission", command= lambda:do_command("netstat"))
+netstat_btn = tk.Button(frame, text = "See the path of data transmission", command= lambda:do_command("netstat"),
+    compound="center",
+    font=("comic sans", 12),
+    bd=0, 
+    relief="flat",
+    cursor="heart",
+    fg = "mediumpurple3",
+    bg="black", activebackground="gray")
 netstat_btn.pack()
 
-nmap_btn = tk.Button(frame, text="Find open ports and services", command=lambda:do_command("nmap"))
+nmap_btn = tk.Button(frame, text="Find open ports and services", command=lambda:do_command("nmap"),
+    compound="center",
+    font=("comic sans", 12),
+    bd=0, 
+    relief="flat",
+    cursor="heart",
+    fg = "mediumpurple3",
+    bg="black", activebackground="gray")
 nmap_btn.pack()
-'''
 
-#listbox
-listbox = tk.Listbox(frame, height = 5, width = 50)
-items = ["Ping", "Tracert","Nslookup","IPconfig", "Netstat","Nmap"]
-for item in items:
-    listbox.insert(tk.END, item)
-
-# code from google
-def getfromlistbox():
-    try:
-        sel = listbox.curselection()
-        if not sel:
-            return ""
-        return listbox.get(sel[0]).lower()
-    except Exception:
-        return ""
-
-#code from google
-
-r_or_l = ["RIGHT","LEFT"]
-
-def do_command():
+def do_command(command):
     global command_textbox, listbox
     
-    command = getfromlistbox()
-
     command_textbox.delete(1.0, tk.END)
     command_textbox.insert(tk.END, command + " working....\n")
     command_textbox.update()
@@ -111,19 +129,13 @@ def mSave():
   
   file.write(text_to_save)
   file.close()
-  
-  # Modifies the one button parameters.
-oneringdothemall_btn = tk.Button(frame, text="Check selected function", 
-    compound="center",
-    font=("comic sans", 12),
-    bd=0, 
-    relief="flat",
-    cursor="heart",
-    fg = "mediumpurple3",
-    bg="black", activebackground="gray")
-oneringdothemall_btn.pack() 
+'''
+listbox = tk.Listbox(frame, height = 5, width = 50)
+items = ["Ping", "Tracert","Nslookup","IPconfig", "Netstat","Nmap"]
+for item in items:
+    listbox.insert(tk.END, item)
 
 listbox.pack()
- 
+'''
    
 root.mainloop()

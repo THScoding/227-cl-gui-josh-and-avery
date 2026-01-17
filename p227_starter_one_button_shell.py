@@ -77,8 +77,19 @@ def getfromlistbox():
         return ""
 
 #code from google
+def move_listbox_grid_left():
+    listbox.pack_forget()
+    listbox.pack(side=tk.LEFT, padx=20)
+
+def move_listbox_grid_right():
+    listbox.pack_forget()
+    listbox.pack(side=tk.RIGHT, padx=20)
 
 r_or_l = ["RIGHT","LEFT"]
+
+move_button_left = tk.Button(root, text="Move Left", command=move_listbox_grid_left)
+move_button_left.pack(side=tk.LEFT, padx=5, pady=10)
+
 
 def do_command():
     global command_textbox, listbox
@@ -121,6 +132,7 @@ oneringdothemall_btn = tk.Button(frame, text="Check selected function",
     cursor="heart",
     fg = "mediumpurple3",
     bg="black", activebackground="gray")
+oneringdothemall_btn.config(command=do_command)
 oneringdothemall_btn.pack() 
 
 listbox.pack()

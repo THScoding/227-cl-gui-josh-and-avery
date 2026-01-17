@@ -76,19 +76,30 @@ def getfromlistbox():
     except Exception:
         return ""
 
+directbox = tk.Listbox(frame, height = 2, width = 20)
+items2 = ["RIGHT","LEFT"]
+for item2 in items2:
+    listbox.insert(tk.END, item2)
+
+# code from google
+def getfromdirectbox():
+    try:
+        sel = directbox.curselection()
+        if not sel:
+            return ""
+        return directbox.get(sel[0]).lower()
+    except Exception:
+        return ""
+    
+command2 = getfromdirectbox
+
 #code from google
-def move_listbox_grid_left():
+def move_listbox_grid():
     listbox.pack_forget()
-    listbox.pack(side=tk.LEFT, padx=20)
+    listbox.pack(side=tk.command2, padx=20)
 
-def move_listbox_grid_right():
-    listbox.pack_forget()
-    listbox.pack(side=tk.RIGHT, padx=20)
-
-r_or_l = ["RIGHT","LEFT"]
-
-move_button_left = tk.Button(root, text="Move Left", command=move_listbox_grid_left)
-move_button_left.pack(side=tk.LEFT, padx=5, pady=10)
+move_button = tk.Button(root, text="Move Button", command=move_listbox_grid)
+move_button.pack(side=tk.LEFT, padx=5, pady=10)
 
 
 def do_command():

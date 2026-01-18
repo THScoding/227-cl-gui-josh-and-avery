@@ -3,6 +3,7 @@
 # p227_starter_one_button_shell.py
 # Note this will not run in the code editor and must be downloaded
 
+from fileinput import filename
 import subprocess
 import tkinter as tk
 import tkinter.scrolledtext as tksc
@@ -14,7 +15,7 @@ frame = tk.Frame(root)
 frame.pack()
 
 # creates the frame with label for the text box
-frame_URL = tk.Frame(root, pady=10,  bg="black") # change frame color
+frame_URL = tk.Frame(root, padx= 530, pady=10,  bg="black") # change frame color
 frame_URL.pack()
 
 # decorative label
@@ -33,35 +34,16 @@ url_entry.pack(side=tk.LEFT)
 frame = tk.Frame(root,  bg="black") # change frame color
 frame.pack()
 
+save_var = tk.BooleanVar()
+Checkbox = tk.Checkbutton(frame, text="Save results as a file?", variable=save_var)
+Checkbox.pack()
+
 # Adds an output box to GUI.
-command_textbox = tksc.ScrolledText(frame, height=10, width=100)
+command_textbox = tksc.ScrolledText(frame, height=30, width=190)
 command_textbox.pack()
 
-# Makes the command button pass it's name to a function using lambda
-
-
-'''
-ping_btn = tk.Button(frame, text="Check to see if a URL is up and active", command=lambda:do_command("ping"))
-ping_btn.pack()
-
-tracert_btn = tk.Button(frame, text="Map your data packet's route", command=lambda:do_command("tracert"))
-tracert_btn.pack()
-
-nslookup_btn = tk.Button(frame, text = "Name server look up", command=lambda:do_command("nslookup"))
-nslookup_btn.pack()
-
-ipconfig_btn = tk.Button(frame, text = "Check to see IP address", command=lambda:do_command("ipconfig"))
-ipconfig_btn.pack()
-
-netstat_btn = tk.Button(frame, text = "See the path of data transmission", command= lambda:do_command("netstat"))
-netstat_btn.pack()
-
-nmap_btn = tk.Button(frame, text="Find open ports and services", command=lambda:do_command("nmap"))
-nmap_btn.pack()
-'''
-
 #listbox
-listbox = tk.Listbox(frame, height = 5, width = 50)
+listbox = tk.Listbox(frame, height = 6, width = 50)
 items = ["Ping", "Tracert","Nslookup","IPconfig", "Netstat","Nmap"]
 for item in items:
     listbox.insert(tk.END, item)
@@ -111,19 +93,27 @@ def do_command():
         for line in p.stdout:
             command_textbox.insert(tk.END,line)
             command_textbox.update()
+    # automatically save the textbox contents if the checkbox is checked
+    if save_var.get():
+        try:
+            mSave()
+        except Exception as e:
+            command_textbox.insert(tk.END, f"\nError saving file: {e}\n")
+            command_textbox.update()
 
 # Save function.
 def mSave():
-  filename = asksaveasfilename(defaultextension='.txt',filetypes = (('Text files', '*.txt'),('Python files', '*.py *.pyw'),('All files', '*.*')))
-  if filename is None:
-    return
-  file = open (filename, mode = 'w')
-  text_to_save = command_textbox.get("1.0", tk.END)
-  
-  file.write(text_to_save)
-  file.close()
-  
-  # Modifies the one button parameters.
+        filename = asksaveasfilename(defaultextension='.txt', filetypes=(('Text files', '*.txt'), ('Python files', '*.py *.pyw'), ('All files', '*.*')))
+        if not filename:
+                return
+        text_to_save = command_textbox.get("1.0", tk.END)
+        try:
+                with open(filename, mode='w', encoding='utf-8') as file:
+                        file.write(text_to_save)
+        except Exception as e:
+                command_textbox.insert(tk.END, f"\nError saving file: {e}\n")
+                command_textbox.update()
+# Modifies the one button parameters.
 oneringdothemall_btn = tk.Button(frame, text="Check selected function", 
     compound="center",
     font=("comic sans", 12),

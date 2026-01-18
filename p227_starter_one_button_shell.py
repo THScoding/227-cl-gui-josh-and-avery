@@ -15,23 +15,23 @@ frame = tk.Frame(root)
 frame.pack()
 
 # creates the frame with label for the text box
-frame_URL = tk.Frame(root, padx= 530, pady=10,  bg="black") # change frame color
+frame_URL = tk.Frame(root, padx= 530, pady=10,  bg="blue") # change frame color
 frame_URL.pack()
 
 # decorative label
 url_label = tk.Label(frame_URL, text="Enter a URL of interest: ", 
     compound="center",
-    font=("comic sans", 14),
+    font=("times new roman", 14),
     bd=0, 
     relief=tk.FLAT, 
     cursor="heart",
     fg="mediumpurple3",
-    bg="black")
+    bg="orange")
 url_label.pack(side=tk.LEFT)
 url_entry= tk.Entry(frame_URL,  font=("comic sans", 14)) # change font
 url_entry.pack(side=tk.LEFT)
 
-frame = tk.Frame(root,  bg="black") # change frame color
+frame = tk.Frame(root,  bg="green") # change frame color
 frame.pack()
 
 save_var = tk.BooleanVar()
@@ -67,10 +67,12 @@ def move_listbox_grid_right():
     listbox.pack_forget()
     listbox.pack(side=tk.RIGHT, padx=20)
 
-move_button = tk.Button(root, text="Move List Left", command=move_listbox_grid_left)
+move_button = tk.Button(root, text="Move List Left", command=move_listbox_grid_left,
+    fg = "red")
 move_button.pack(side=tk.LEFT, padx=5, pady=10)
 
-move_button = tk.Button(root, text="Move List Right", command=move_listbox_grid_right)
+move_button = tk.Button(root, text="Move List Right", command=move_listbox_grid_right,
+    fg = "blue")
 move_button.pack(side=tk.RIGHT, padx=5, pady=10)
 
 def do_command():
@@ -116,12 +118,12 @@ def mSave():
 # Modifies the one button parameters.
 oneringdothemall_btn = tk.Button(frame, text="Check selected function", 
     compound="center",
-    font=("comic sans", 12),
+    font=("times new roman", 12),
     bd=0, 
     relief="flat",
     cursor="heart",
-    fg = "mediumpurple3",
-    bg="black", activebackground="gray")
+    fg = "red",
+    bg="yellow")
 oneringdothemall_btn.config(command=do_command)
 oneringdothemall_btn.pack() 
 

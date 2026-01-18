@@ -24,7 +24,7 @@ url_label = tk.Label(frame_URL, text="Enter a URL of interest: ",
     font=("times new roman", 14),
     bd=0, 
     relief=tk.FLAT, 
-    cursor="heart",
+    cursor="star",
     fg="mediumpurple3",
     bg="orange")
 url_label.pack(side=tk.LEFT)
@@ -121,7 +121,7 @@ oneringdothemall_btn = tk.Button(frame, text="Check selected function",
     font=("times new roman", 12),
     bd=0, 
     relief="flat",
-    cursor="heart",
+    cursor="star",
     fg = "red",
     bg="yellow")
 oneringdothemall_btn.config(command=do_command)

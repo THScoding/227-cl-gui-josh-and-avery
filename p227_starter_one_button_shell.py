@@ -85,10 +85,10 @@ def move_listbox_grid_right():
     listbox.pack_forget()
     listbox.pack(side=tk.RIGHT, padx=20)
 
-move_button = tk.Button(root, text="Move Button Left", command=move_listbox_grid_left)
+move_button = tk.Button(root, text="Move List Left", command=move_listbox_grid_left)
 move_button.pack(side=tk.LEFT, padx=5, pady=10)
 
-move_button = tk.Button(root, text="Move Button Right", command=move_listbox_grid_right)
+move_button = tk.Button(root, text="Move List Right", command=move_listbox_grid_right)
 move_button.pack(side=tk.RIGHT, padx=5, pady=10)
 
 def do_command():
